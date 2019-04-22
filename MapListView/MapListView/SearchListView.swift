@@ -8,11 +8,22 @@
 
 import UIKit
 
+protocol SearchListViewDelegate: class {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool
+}
+
 class SearchListView: UIView {
 
     @IBOutlet var contentView: UIView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
+    
+    weak var delegate: SearchListViewDelegate?
+    
+    var searchBarHeight: CGFloat {
+        return searchBar?.frame.size.height ?? 0
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,9 +46,27 @@ class SearchListView: UIView {
     
     private func setUpSearchBar() {
         searchBar?.delegate = self
+        searchBar?.showsCancelButton = false
     }
 }
 
+// MARK - UISearchBarDelegate -
 extension SearchListView: UISearchBarDelegate {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = true
+        return delegate?.searchBarShouldBeginEditing(searchBar) ?? true
+    }
     
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = false
+        return delegate?.searchBarShouldEndEditing(searchBar) ?? true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
 }

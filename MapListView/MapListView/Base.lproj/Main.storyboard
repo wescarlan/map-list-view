@@ -32,17 +32,11 @@
                                             <constraint firstAttribute="height" constant="5" id="3hm-xo-0TP"/>
                                             <constraint firstAttribute="width" constant="35" id="hrq-ZV-fuU"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="mBQ-JE-3m9" appends="YES" id="jLU-P4-8EO"/>
-                                        </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rgc-Uu-kMW" customClass="SearchListView" customModule="MapListView" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="4" width="414" height="316"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="mBQ-JE-3m9" appends="YES" id="zXA-Cc-olZ"/>
-                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -50,11 +44,11 @@
                                 <constraints>
                                     <constraint firstItem="Rgc-Uu-kMW" firstAttribute="top" secondItem="5kp-8J-qel" secondAttribute="bottom" constant="-6" id="4bu-dD-clt"/>
                                     <constraint firstAttribute="bottom" secondItem="Rgc-Uu-kMW" secondAttribute="bottom" id="9KY-36-1CF"/>
+                                    <constraint firstAttribute="height" priority="999" constant="320" id="ACn-v0-lBh"/>
                                     <constraint firstAttribute="trailing" secondItem="Rgc-Uu-kMW" secondAttribute="trailing" id="F8d-zy-WYM"/>
                                     <constraint firstItem="Rgc-Uu-kMW" firstAttribute="leading" secondItem="11T-Hq-h9Y" secondAttribute="leading" id="LKN-hu-1O2"/>
                                     <constraint firstItem="5kp-8J-qel" firstAttribute="top" secondItem="11T-Hq-h9Y" secondAttribute="top" constant="5" id="OZ7-JN-tzN"/>
                                     <constraint firstItem="5kp-8J-qel" firstAttribute="centerX" secondItem="11T-Hq-h9Y" secondAttribute="centerX" id="agC-xL-YQ0"/>
-                                    <constraint firstAttribute="height" priority="999" constant="320" id="bh1-os-0FV"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="mBQ-JE-3m9" appends="YES" id="u0N-Rx-Ghg"/>
@@ -77,7 +71,7 @@
                     <connections>
                         <outlet property="mapView" destination="Pkl-hh-NIb" id="qzg-aA-Jje"/>
                         <outlet property="searchContainerView" destination="11T-Hq-h9Y" id="3k0-DO-7Ao"/>
-                        <outlet property="searchContainerViewHeightConstraint" destination="bh1-os-0FV" id="Rp1-Yz-OgW"/>
+                        <outlet property="searchContainerViewHeightConstraint" destination="ACn-v0-lBh" id="MHc-dI-XDJ"/>
                         <outlet property="searchListView" destination="Rgc-Uu-kMW" id="Jdb-nb-ttF"/>
                         <outlet property="tabView" destination="5kp-8J-qel" id="UkH-SO-JHX"/>
                     </connections>
