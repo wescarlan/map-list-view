@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
     @IBOutlet private var searchListView: SearchListView!
     
     private var hasSetSearchContainerPostitions = false
+    private var locationCache: LocationCacheInterface { return LocationCache.sharedInstance }
     
     private lazy var searchContainerBottomPosition: CGFloat = {
         var minHeight = searchListView.searchBarHeight
