@@ -15,6 +15,7 @@
 		2B28DB34226AA6BA006ACA61 /* MapListViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B28DB33226AA6BA006ACA61 /* MapListViewTests.swift */; };
 		2B28DB43226BCCB3006ACA61 /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B28DB42226BCCB3006ACA61 /* SearchListView.swift */; };
 		2B28DB45226BCCC1006ACA61 /* SearchListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B28DB44226BCCC1006ACA61 /* SearchListView.xib */; };
+		2B28DB49226D4F52006ACA61 /* SlidingOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B28DB48226D4F52006ACA61 /* SlidingOverlayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		2B28DB35226AA6BA006ACA61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B28DB42226BCCB3006ACA61 /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
 		2B28DB44226BCCC1006ACA61 /* SearchListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchListView.xib; sourceTree = "<group>"; };
+		2B28DB48226D4F52006ACA61 /* SlidingOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingOverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				2B28DB20226AA6B8006ACA61 /* MapViewController.swift */,
 				2B28DB42226BCCB3006ACA61 /* SearchListView.swift */,
 				2B28DB44226BCCC1006ACA61 /* SearchListView.xib */,
+				2B28DB48226D4F52006ACA61 /* SlidingOverlayView.swift */,
 			);
 			path = MapListView;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			files = (
 				2B28DB43226BCCB3006ACA61 /* SearchListView.swift in Sources */,
 				2B28DB21226AA6B8006ACA61 /* MapViewController.swift in Sources */,
+				2B28DB49226D4F52006ACA61 /* SlidingOverlayView.swift in Sources */,
 				2B28DB1F226AA6B8006ACA61 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

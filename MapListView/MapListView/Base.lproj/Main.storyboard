@@ -21,7 +21,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Pkl-hh-NIb">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
-                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11T-Hq-h9Y">
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11T-Hq-h9Y" customClass="SlidingOverlayView" customModule="MapListView" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="576" width="414" height="320"/>
                                 <subviews>
                                     <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kp-8J-qel">
@@ -44,15 +44,12 @@
                                 <constraints>
                                     <constraint firstItem="Rgc-Uu-kMW" firstAttribute="top" secondItem="5kp-8J-qel" secondAttribute="bottom" constant="-6" id="4bu-dD-clt"/>
                                     <constraint firstAttribute="bottom" secondItem="Rgc-Uu-kMW" secondAttribute="bottom" id="9KY-36-1CF"/>
-                                    <constraint firstAttribute="height" priority="999" constant="320" id="ACn-v0-lBh"/>
                                     <constraint firstAttribute="trailing" secondItem="Rgc-Uu-kMW" secondAttribute="trailing" id="F8d-zy-WYM"/>
                                     <constraint firstItem="Rgc-Uu-kMW" firstAttribute="leading" secondItem="11T-Hq-h9Y" secondAttribute="leading" id="LKN-hu-1O2"/>
                                     <constraint firstItem="5kp-8J-qel" firstAttribute="top" secondItem="11T-Hq-h9Y" secondAttribute="top" constant="5" id="OZ7-JN-tzN"/>
+                                    <constraint firstAttribute="height" priority="999" constant="320" id="T9T-H2-Vgl"/>
                                     <constraint firstItem="5kp-8J-qel" firstAttribute="centerX" secondItem="11T-Hq-h9Y" secondAttribute="centerX" id="agC-xL-YQ0"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="mBQ-JE-3m9" appends="YES" id="u0N-Rx-Ghg"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -71,17 +68,11 @@
                     <connections>
                         <outlet property="mapView" destination="Pkl-hh-NIb" id="qzg-aA-Jje"/>
                         <outlet property="searchContainerView" destination="11T-Hq-h9Y" id="3k0-DO-7Ao"/>
-                        <outlet property="searchContainerViewHeightConstraint" destination="ACn-v0-lBh" id="MHc-dI-XDJ"/>
                         <outlet property="searchListView" destination="Rgc-Uu-kMW" id="Jdb-nb-ttF"/>
                         <outlet property="tabView" destination="5kp-8J-qel" id="UkH-SO-JHX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="mBQ-JE-3m9">
-                    <connections>
-                        <action selector="panView:" destination="BYZ-38-t0r" id="cvP-Lf-7qZ"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
         </scene>
     </scenes>
