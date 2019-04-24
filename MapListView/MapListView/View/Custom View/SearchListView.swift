@@ -11,6 +11,7 @@ import UIKit
 protocol SearchListViewDelegate: class {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
 }
 
 class SearchListView: UIView {
@@ -36,10 +37,12 @@ class SearchListView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .clear
+        // Set custom nib
         Bundle.main.loadNibNamed("\(SearchListView.self)", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = bounds
+        
+        backgroundColor = .clear
         
         setUpSearchBar()
     }
@@ -60,6 +63,10 @@ extension SearchListView: UISearchBarDelegate {
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.showsCancelButton = false
         return delegate?.searchBarShouldEndEditing(searchBar) ?? true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        delegate?.searchBar(searchBar, textDidChange: searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

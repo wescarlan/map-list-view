@@ -25,11 +25,14 @@ class LocationCoordinator {
     }()
     
     func getLocations() {
+        // Get all locations
         locationDataTasker.getLocations()
     }
     
     private func setLocations(_ locations: [LocationDataModel]) {
+        // Run this on a background thread since it could be load intensive
         DispatchQueue.global(qos: .background).async { [weak self] in
+            // Set all locations in cache
             self?.locationCache.setLocations(locations)
             DispatchQueue.main.async { [weak self] in
                 self?.delegate?.didGetLocations(locations)

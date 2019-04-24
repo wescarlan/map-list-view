@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     
     private var hasSetSearchContainerPostitions = false
     private var locationCache: LocationCacheInterface { return LocationCache.sharedInstance }
+    fileprivate var locations: [LocationDataModel] { return locationCache.filteredLocations }
     
     private lazy var searchContainerBottomPosition: CGFloat = {
         var minHeight = searchListView.searchBarHeight
@@ -61,7 +62,15 @@ class MapViewController: UIViewController {
         // Set tab view corner radius
         tabView.layer.cornerRadius = 2.5
         
+        // Set delegates
         searchListView.delegate = self
+        searchListView.tableView.delegate = self
+        searchListView.tableView.dataSource = self
+        
+        // Register cells
+        searchListView.tableView.register(
+            UINib(nibName: "\(LocationTableViewCell.self)", bundle: nil),
+            forCellReuseIdentifier: "\(LocationTableViewCell.self)")
     }
     
     override func viewDidLayoutSubviews() {
@@ -72,6 +81,27 @@ class MapViewController: UIViewController {
             searchContainerView.topPosition = searchContainerTopPosition
             hasSetSearchContainerPostitions = true
         }
+    }
+}
+
+// MARK: - UITableViewDelegate -
+extension MapViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Scroll to area on map
+    }
+}
+
+// MARK: - UITableViewDataSource -
+extension MapViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locations.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(LocationTableViewCell.self)", for: indexPath)
+        guard let locationCell = cell as? LocationTableViewCell else { return cell }
+        locationCell.location = locations[indexPath.row]
+        return locationCell
     }
 }
 
@@ -91,5 +121,10 @@ extension MapViewController: SearchListViewDelegate {
         guard !searchContainerView.isPanning else { return true }
         searchContainerView.setPosition(.middle)
         return true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        locationCache.filterLocations(searchTerm: searchText)
+        searchListView.tableView.reloadData()
     }
 }

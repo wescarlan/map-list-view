@@ -44,6 +44,7 @@ class SlidingOverlayView: UIView {
     }
     
     private func setUpHeightConstraint() {
+        // Look for an existing height constraint, otherwise create one
         guard let heightConstraint = constraints.first(where: { $0.firstAttribute == .height }) else {
             let heightConstraint = NSLayoutConstraint(
                 item: self,
@@ -83,12 +84,14 @@ class SlidingOverlayView: UIView {
     }
     
     private func setToNextPosition() {
+        // If the user has not panned past a certain threshold, don't change the current position
         let positionOffset = searchContainerNewY - searchContainerLastY
         guard abs(positionOffset) > 20 else {
             setPosition(currentPosition)
             return
         }
         
+        // Set to next relevant position
         if (positionOffset > 0) {
             switch currentPosition {
             case .bottom: setPosition(.middle)
@@ -117,8 +120,10 @@ class SlidingOverlayView: UIView {
             let yTranslation = translation.y
             var newY = searchContainerLastY - yTranslation
             if yTranslation > 0 {
+                // Don't pan past the bottom position
                 newY = max(newY, bottomPosition)
             } else {
+                // Don't pan past the top position
                 newY = min(newY, topPosition)
             }
             heightConstraint.constant = newY

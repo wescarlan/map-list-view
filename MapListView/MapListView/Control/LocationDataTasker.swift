@@ -24,12 +24,14 @@ class LocationDataTasker {
     private lazy var decoder = JSONDecoder()
     
     func getLocations() {
+        // Get the location json file
         guard let fileUrl = Bundle.main.url(forResource: LocationFile.name, withExtension: LocationFile.type) else {
             delegate?.didFailGettingLocations(error: nil)
             return
         }
         
         do {
+            // Convert the file to a location data model
             let data = try Data(contentsOf: fileUrl)
             let locations = try decoder.decode([LocationDataModel].self, from: data)
             delegate?.didGetLocations(locations)
