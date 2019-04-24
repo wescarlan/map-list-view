@@ -28,7 +28,7 @@ class LocationCache: LocationCacheInterface {
         allLocations = locations
         filteredLocations = locations
         prefixTree = PrefixNode(size: locations.count)
-        for i in 0...locations.count-1 {
+        for i in 0 ..< locations.count {
             let location = locations[i]
             prefixTree?.update(index: i, prefix: location.city)
         }

@@ -1,0 +1,47 @@
+[
+    {
+        "country": "USA",
+        "name": "Atlanta",
+        "_id": 1,
+        "coord": {
+            "lon": -84.387985,
+            "lat": 33.748997
+        }
+    },
+    {
+        "country": "AUS",
+        "name": "Sydney",
+        "_id": 2,
+        "coord": {
+            "lon": 151.20929,
+            "lat": -33.86882
+        }
+    },
+    {
+        "country": "NLD",
+        "name": "Amsterdam",
+        "_id": 3,
+        "coord": {
+            "lon": 4.895168,
+            "lat": 52.370216
+        }
+    },
+    {
+        "country": "USA",
+        "name": "New York",
+        "_id": 4,
+        "coord": {
+            "lon": -74.005974,
+            "lat": 40.712776
+        }
+    },
+    {
+        "country": "USA",
+        "name": "Los Angeles",
+        "_id": 5,
+        "coord": {
+            "lon": -118.243683,
+            "lat": 34.052235
+        }
+    }
+]
