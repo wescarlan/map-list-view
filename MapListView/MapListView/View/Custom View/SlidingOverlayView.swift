@@ -13,9 +13,15 @@ enum SlidingOverlayState {
     case bottom, middle, top
 }
 
+protocol SlidingOverlayViewDelegate: class {
+    func didSetPostion(_ position: CGFloat)
+}
+
 class SlidingOverlayView: UIView {
     
     static let animationDuration: TimeInterval = 0.3
+    
+    weak var delegate: SlidingOverlayViewDelegate?
     
     var bottomPosition: CGFloat = 0
     var middlePosition: CGFloat = UIScreen.main.bounds.height / 2
@@ -81,6 +87,7 @@ class SlidingOverlayView: UIView {
             self?.heightConstraint.constant = position
             self?.superview?.layoutIfNeeded()
         }, completion: nil)
+        delegate?.didSetPostion(position)
     }
     
     private func setToNextPosition() {
@@ -128,6 +135,7 @@ class SlidingOverlayView: UIView {
             }
             heightConstraint.constant = newY
             searchContainerNewY = newY
+            delegate?.didSetPostion(newY)
         case .cancelled, .ended, .failed:
             isPanning = false
             setToNextPosition()

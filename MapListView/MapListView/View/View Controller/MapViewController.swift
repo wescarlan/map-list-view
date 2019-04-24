@@ -42,12 +42,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpMapView()
         setUpSearchView()
-    }
-    
-    private func setUpMapView() {
-        mapView.delegate = self
     }
     
     private func setUpSearchView() {
@@ -66,6 +61,7 @@ class MapViewController: UIViewController {
         searchListView.delegate = self
         searchListView.tableView.delegate = self
         searchListView.tableView.dataSource = self
+        searchContainerView.delegate = self
         
         // Register cells
         searchListView.tableView.register(
@@ -82,12 +78,30 @@ class MapViewController: UIViewController {
             hasSetSearchContainerPostitions = true
         }
     }
+    
+    fileprivate func scrollToLocation(_ location: LocationDataModel) {
+        let locationCoordinate = location.coordinate
+        let coordinate = CLLocationCoordinate2D(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
+        
+        let span = MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
+        mapView.setRegion(region, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        mapView.addAnnotation(annotation)
+        
+        searchContainerView.setPosition(.bottom)
+    }
 }
 
 // MARK: - UITableViewDelegate -
 extension MapViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Scroll to area on map
+        view.endEditing(true)
+        let location = locations[indexPath.row]
+        searchListView.searchBar.text = location.city
+        scrollToLocation(location)
     }
 }
 
@@ -105,9 +119,11 @@ extension MapViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - MKMapViewDelegate -
-extension MapViewController: MKMapViewDelegate {
-    
+// MARK: - SlidingOverlayViewDelegate -
+extension MapViewController: SlidingOverlayViewDelegate {
+    func didSetPostion(_ position: CGFloat) {
+        searchListView.tableView.isHidden = position <= searchContainerBottomPosition + 20
+    }
 }
 
 // MARK: - SearchListViewDelegate -
