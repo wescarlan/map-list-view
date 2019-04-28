@@ -70,6 +70,7 @@ class MapViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         // Set sliding positions of search view
         if !hasSetSearchContainerPostitions {
             searchContainerView.bottomPosition = searchContainerBottomPosition
@@ -79,14 +80,25 @@ class MapViewController: UIViewController {
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        hasSetSearchContainerPostitions = false
+    }
+    
     fileprivate func scrollToLocation(_ location: LocationDataModel) {
+        // Remove previous map annotations
+        mapView.removeAnnotations(mapView.annotations)
+        
+        // Convert the location coordinate to CLLocationCoordinate2D
         let locationCoordinate = location.coordinate
         let coordinate = CLLocationCoordinate2D(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
         
+        // Set the map span and region
         let span = MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5)
         let region = MKCoordinateRegion(center: coordinate, span: span)
         mapView.setRegion(region, animated: true)
         
+        // Add a map annotation at the coordinate
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         mapView.addAnnotation(annotation)

@@ -51,6 +51,12 @@ class SearchListView: UIView {
         searchBar?.delegate = self
         searchBar?.showsCancelButton = false
     }
+    
+    fileprivate func scrollTableViewToTop() {
+        guard tableView.numberOfRows(inSection: 0) > 0 else { return }
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
 }
 
 // MARK - UISearchBarDelegate -
@@ -66,6 +72,7 @@ extension SearchListView: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        scrollTableViewToTop()
         delegate?.searchBar(searchBar, textDidChange: searchText)
     }
     
